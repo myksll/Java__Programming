@@ -1,0 +1,67 @@
+
+  ------------------------------------------------------------------------
+
+UrlData [String, Loop, Map, Array]
+
+    sample data to use:
+        String[] urls = {"www.google.com", "www.my.cydeo.com", "www.amazon.com", "www.illinois.gov", "www.harvard.edu"};
+
+    Given an array of urls keep track of the url and data within each url according to the domain
+        track all the urls by the name only
+        each url can be accessed just by giving a domain name
+
+        ex:
+            input: google
+            output: www.google.com
+
+    bonus: print all of the domains and urls in a clean format
+
+    ------------------------------------------------------------------------
+
+Frequency of character [String, Loop, Map]
+
+    create a program that will find the frequency of every character in the String
+        Ex:
+            Input: "aaapple"
+            Output: a = 3
+                    p = 2
+                    l = 1
+                    e = 1
+
+    ------------------------------------------------------------------------
+
+BalancedBrackets [String, Loop, Stack, Map]
+
+    Given a String determine if the brackets are balanced. The brackets are balanced when each opening brackets has a closing bracket corresponding to it and each opening must be matched with its correct closing
+
+    Ex:
+        ({[]}) -> balanced
+        (({()})) -> balanced
+        {{}}((( -> not balanced
+        {]() -> not balanced
+        {}[]() -> balanced
+
+    ------------------------------------------------------------------------
+
+MovieFilter [List, Map, Loop, Class]
+
+    create a class Movie
+    define these instance variables: title, year, genre, duration(minutes)
+    create a constructor to initialize all the variable and toString to print the objects with all the information
+
+    create a main method and create an List of Movie objects
+    create these different maps based on the requirements
+
+    - year:
+        create a map that will group each Movie by the year it was created
+        hint: key is the year, value is a List of Movies
+
+    - genre:
+        create a map that will group each Movie by the genre
+        hint: key is the genre, value is a List of Movies
+
+    - duration
+        create a map that will group each Movie by the duration
+        hint: for this one set a fixed max duration as the key. For example have one as 60 and all movies less than or equal to 60 minutes will be stored in that map, then a 90 value which will store all the movies less than or equal to 90 minutes, etc
+
+    ------------------------------------------------------------------------

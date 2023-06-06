@@ -1,0 +1,311 @@
+05/21/2023
+
+LAST DAY OF JAVA
+Java Module Completion: https://docs.google.com/forms/d/e/1FAIpQLSe-QdUN6VA3lFy-RyeOmmkMfOG3RAdkuSjo-3YCzG5HLGNIxQ/viewform
+
+Last Java Office hours: June 7th (2 more)
+Last Java Avengers: June 12th (2 more)
+Selenium office hours and avengers start after
+Class Photo
+Extra Topic Short Videos: StringBuilder, Enums, Generics, Functional Interface, Lambda Expressions, Stream
+
+Week 15
+Day39 - Collection
+Day40 - Collection Continue
+Day41 - Map
+Day42 - Map Continue
+__________________________________________________________________
+
+Collection framework
+List
+Set
+Thread & Synchronization
+Queue
+Iterable
+Map
+__________________________________________________________________
+
+Collection Framework
+
+    group of interface and classes which define and implement different algorithms for working with data. These collections are data structures that will store, remove, and get data in different ways
+
+    data structure
+        array: sized fixed, no methods, allows primitive and non primitive types
+        Collections: more flexible, have different ways to handle data, only works with object types has methods
+
+    The collection framework is created with inheritance, abstraction, and polymorphism
+
+Main interface of the framework
+
+    Collection: the parent of the Collection types. Defines the main functions of a collection
+        ex: add, remove, size
+
+    List: ordered(index), allows duplicates
+
+    Set: unordered(no indexes), does not allow duplicates
+
+    Queue: typically FIFO (First In First Out) order
+        * not always FIFO, depends on the class implementing
+
+        Deque: an interface that allows access to elements from the beginning or end
+    child of the Queue interface
+
+    We will highlight the Map & Iterable interfaces separately
+
+    ------------------------------------------------------------------------
+
+    Q: What is the different between Collection and Collections
+
+        Collection: the main/parent interface in the Collection Framework
+
+        Collections: a utility class that has some useful methods for collection types
+            sort, max, frequency
+
+    ------------------------------------------------------------------------
+
+    What is the advantage of the collection framework
+
+        the different data structures have different implementations of algorithms to solve the problems of working with data
+
+            Ex: add()
+                defined in Collection interface
+                abstract
+
+                ArrayList: add element to to the end of internal array
+                LinkedList: create a new node and the tail will have the reference of the new node
+
+        performance:
+            because a certain data structure focuses on one idea it will be able to perform that idea(functionality) efficiently
+
+            adding, removing, searching
+
+        *** Even though there is many collections types, often developers and testers need to only use List or Map types
+
+    ------------------------------------------------------------------------
+
+    What is the benefit of the Polymorphic reference
+
+        references, especially the interface reference allows an object to be flexibly used in methods, constructors, data structures
+
+            new ArrayList<>(Collection c) -> any object that implements the Collection interface can be given as the argument
+
+            public static void m(List<Integer> nums){}
+            public static List<Integer> m(){}
+
+            addAll(Collection c)
+
+    ------------------------------------------------------------------------
+
+    Thread & Synchronization
+
+        process: execution instance of a program
+
+        thread: a sequence of execution within process
+
+        synchronization: multiple threads cannot access at the same time
+            - also known as thread-safe
+            - if multiple threads did try to access a synchronized field they would need to access one at a time
+
+        advantage: thread-safe
+        disadvantage: slower
+
+        Ex: multiple people accessing ATM
+
+__________________________________________________________________
+
+Classes that implement List:
+
+    ArrayList: data structure that uses arrays internally. Re-sizeable array
+        useful to storing and reading information
+
+    LinkedList: data structure that uses nodes internally.
+        also implements Deque -> doubly linked
+
+        useful to manipulate the collection. adding or removing is handled efficiently
+
+        Node: an object that has the value, reference to the node before it and reference to node after it
+
+    Vector: legacy version of ArrayList. it is synchronized
+
+        Stack: sub class of Vector. Notes below
+    ------------------------------------------------------------------------
+
+Classes that implement Set:
+
+    HashSet: follows a Hashing algorithm, which means handles data fast and efficiently
+        data structure that uses HashMap internally (talk about this later)
+
+        the order is basically random
+
+    LinkedHashSet(): data structure that uses HashTable and LinkedList implementations
+        the insertion order is maintained
+
+    -> Interface: SortedSet extends Set
+
+    TreeSet: implements the SortedSet
+        Elements are stored in the natural order(sorted order, smallest to largest, lexicographical)
+        null is not allowed
+
+    ------------------------------------------------------------------------
+
+Stack vs Queue
+
+Stack
+    sub class of Vector
+
+    LIFO: Last In First Out
+        ex: stack of books
+
+    push(): adding the element to the top of the stack. also returns the element added
+    pop(): removing the element at the top of the stack. also returns that element removed
+    peek(): returns the element at the top of the stack
+
+Queue
+
+    Queue is an interface inheriting the Collection interface
+
+    FIFO: First In First Out
+        ex: a line of people
+
+        add() <--> offer()
+        remove() <--> poll()
+        element() <--> peek()
+
+        The methods on the left can cause an exception to occur whenever the method fails
+        The method on the right just return null
+
+    ------------------------------------------------------------------------
+
+Classes that implement Queue
+
+    PriorityQueue: data structure that stores elements based on its own priority. Sometimes looks like natural order, but cannot be predicted (random)
+
+        does not accept null
+
+    Note: Even though Queue is the interface the PriorityQueue has its own implementation of the idea
+
+    ArrayDeque: implementing Deque. More proper queue type
+        also has access to both side of the collection
+
+        does not accept null
+__________________________________________________________________
+
+Iterable
+
+    interface
+    parent of the Collection interface
+
+    any data structure that implements the Iterable, which is any data structure that implements Collection interface, can be iterated with a for each loop
+
+    The interface defined this abstract method:
+
+        Iterator<T> iterator();
+
+        this abstract method was implemented in the collection classes. The methods returns an iterator object which allows us to iterate through the elements one at a time using the methods of the iterator. It iterates through from beginning to end
+
+        -> think of the iterator as a pin
+        -> when the iterator method is called the start point is BEFORE the first element
+
+    methods:
+
+        hasNext(): returns boolean. checks if there is any element next to the current position of the iterator(pin)
+
+        next(): returns the element. first moves the iterator to the next element and it returns that element
+
+        remove(): remove the element at the current iterator position
+
+____________________________________________________________
+
+Map
+
+    interface that does NOT inherit the Collection interface
+
+    Map is still part of the java collection framework
+
+    the main idea of this interface is the key / value format
+
+        Entry: key / pair
+
+        each key is linked to some value
+
+        -> keys must be unique
+        -> values can be duplicate
+
+Syntax:
+
+    Map < keyDatatype, valueDatatype > referenceName = object
+
+    Map<Integer, String> map = new HashMap<>();
+
+Classes that implement the Map interface
+
+    HashMap: order the entries is not guaranteed (random order)
+
+        using hashing algorithm (fast and efficient)
+
+    LinkedHashMap: insertion order of the entries is maintained
+
+    TreeMap:
+        implements SortedMap (interface)
+
+        The entries are sorted in a natural order(based on the keys)
+            -> ascending order, smallest to biggest, lexicographical
+
+        null key is not allowed
+
+    HashTable: the order is not guaranteed (random order)
+        legacy class -> inheriting Dictionary
+        synchronized (thread - safe)
+        both null keys and values not allowed
+
+    ------------------------------------------------------------------------
+
+Methods:
+
+    put(key, value):
+        takes the key and value and stores that entry into the map
+
+        -> if the key already exists the value will be updated(reassigned) because the key must be unique
+
+    get(key):
+        returns the value that is linked to the given key
+
+        -> what if the key does not exist? it returns null
+
+    remove(key)
+        uses the key to determine which entry to remove
+
+    containsKey(key)
+        returns boolean based on if the map has that key defined
+
+    containsValue(value)
+        returns boolean based on if the map has the value defined
+
+    ------------------------------------------------------------------------
+
+Looping through a Map:
+
+    can we use for each loop directly with the map
+        no, it does not implement Iterable
+
+        Map<String, Double> map = new HashMap<>();
+
+        for(type : map) <- just this does not work
+
+    keySet(): returns a Set of keys
+
+        then we can iterate through the keys and use those to read the value
+
+        for(String key : map.keySet()){}
+
+    values(): returns all the values of the map
+
+        for(String value : map.values()){}
+
+    entrySet(): returns all the entries of map
+
+        for(Map.Entry<String, Double> entry : map.entrySet()){}
+
+        methods to access information from the entry:
+            getkey()
+            getValue()
